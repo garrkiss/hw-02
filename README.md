@@ -16,6 +16,8 @@
 
 ### Решение 1
 
+![Скрин](https://github.com/garrkiss/hw-02/blob/main/img/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%2018.04.24_20.05.24.png)
+
 
 ```
 wget https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-4+debian11_all.deb
@@ -31,13 +33,6 @@ systemctl restart zabbix-server zabbix-agent apache2
 sudo systemctl restart zabbix-server zabbix-agent apache2
 sudo systemctl enable zabbix-server zabbix-agent apache2
 ```
-
-
-
-
-
-![Скрин](https://github.com/garrkiss/8-03-hw/blob/main/img/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%2014.04.24_21.10.12.png)
-
 
 
 ### Задание 2
