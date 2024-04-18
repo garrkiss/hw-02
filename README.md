@@ -16,6 +16,26 @@
 
 ### Решение 1
 
+
+```
+wget https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-4+debian11_all.deb
+sudo dpkg -i zabbix-release_6.0-4+debian11_all.deb
+sudo apt update
+sudo apt install zabbix-server-pgsql zabbix-frontend-php php7.4-pgsql zabbix-apache-conf zabbix-sql-scripts zabbix-agent
+sudo apt install postgresql
+sudo -u postgres createuser --pwprompt zabbix - прописал пароль
+sudo -u postgres createdb -O zabbix zabbix
+zcat /usr/share/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+sudo nano /etc/zabbix/zabbix_server.conf - вписал пароль в DBPassword
+systemctl restart zabbix-server zabbix-agent apache2
+sudo systemctl restart zabbix-server zabbix-agent apache2
+sudo systemctl enable zabbix-server zabbix-agent apache2
+```
+
+
+
+
+
 ![Скрин](https://github.com/garrkiss/8-03-hw/blob/main/img/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%2014.04.24_21.10.12.png)
 
 
