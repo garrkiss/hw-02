@@ -51,53 +51,20 @@ sudo systemctl enable zabbix-server zabbix-agent apache2
 3. Приложите в файл README.md скриншот раздела Monitoring > Latest data для обоих хостов, где видны поступающие от агентов данные.
 4. Приложите в файл README.md текст использованных команд в GitHub
 
-
-
-
-
-
-
-
-
-### Задание 2
-### Что нужно сделать:
-
-1. Запушьте репозиторий на GitLab, изменив origin. Это изучалось на занятии по Git.
-2. Создайте .gitlab-ci.yml, описав в нём все необходимые, на ваш взгляд, этапы.
-   
-В качестве ответа в шаблон с решением добавьте:
-- файл gitlab-ci.yml для своего проекта или вставьте код в соответствующее поле в шаблоне;
-- скриншоты с успешно собранными сборками.
-
 ### Решение 2
 
+![Скрин](https://github.com/garrkiss/hw-02/blob/main/img/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%2018.04.24_20.05.24.png)
+![Скрин](https://github.com/garrkiss/hw-02/blob/main/img/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%2018.04.24_20.05.24.png)
+![Скрин](https://github.com/garrkiss/hw-02/blob/main/img/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%2018.04.24_20.05.24.png)
+
 
 ```
-stages:
-  - test
-  - static-analysis
-  - build
-
-test:
-  stage: test
-  image: golang:1.17
-  script: 
-   - go test .
-
-static-analysis:
- stage: test
- image:
-  name: sonarsource/sonar-scanner-cli
-  entrypoint: [""]
- variables:
- script:
-  - sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://158.160.118.158:9000 -Dsonar.login=sqp_e8fe2deba4be4ae3d3fff9fcf0a5fcc61b0a9467
-
-build:
-  stage: build
-  image: docker:latest
-  script:
-   - docker build .
+wget https://repo.zabbix.com/zabbix/6.0/debian/pool/main/z/zabbix-release/zabbix-release_6.0-4+debian11_all.deb
+sudo dpkg -i zabbix-release_6.0-4+debian11_all.deb
+sudo apt update
+sudo apt install zabbix-agent
+cd /etc/zabbix/
+sudo nano zabbix_agentd.conf - прописал сервер и hostname
+sudo systemctl restart zabbix-agent
+sudo systemctl enable zabbix-agent
 ```
-
-![Скрин](https://github.com/garrkiss/8-03-hw/blob/main/img/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%2014.04.24_22.36.31.png)
